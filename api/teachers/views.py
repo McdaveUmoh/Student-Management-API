@@ -58,7 +58,7 @@ user_model = teacher_namespace.model(
 
 login_model = teacher_namespace.model(
     'Login', {
-        'email' : fields.String(required=True, description= "An email"),
+        'username' : fields.String(required=True, description= "A username"),
         'password' : fields.String(required=True, description= "A password"),
         
     }
