@@ -33,12 +33,12 @@
 
 ---
 
----
-
 <!-- GETTING STARTED -->
 ## Usage
 
 To use this API you can use the sample data or follow these steps:
+
+---
 
 Admin:
 {
