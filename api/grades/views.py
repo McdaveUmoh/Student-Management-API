@@ -147,7 +147,7 @@ class StudentGPA(Resource):
             return {
             'student_name': student.name,
             'student_mat_no': student.mat_no,
-            'gpa': gpa
+            'CGPA': gpa
             }, 200
         elif username == student.mat_no :
             grades_list = []
@@ -159,7 +159,7 @@ class StudentGPA(Resource):
             return {
             'student_name': student.name,
             'student_mat_no': student.mat_no,
-            'gpa': gpa
+            'CGPA': gpa
             }, 200
         else:
             return {"error" : "You are not Authorised to perform this action or Student has no GPA"} , HTTPStatus.NOT_FOUND

@@ -15,8 +15,8 @@ if uri.startswith("postgres://"):
  
 class Config:
      SECRET_KEY = config('SECRET_KEY', 'secret')
-     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=40)
-     JWT_REFRESH_TOKEN_EXPIRES = timedelta(minutes=40)
+     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=400)
+     JWT_REFRESH_TOKEN_EXPIRES = timedelta(minutes=400)
      JWT_SECRET_KEY = config('JWT_SECRET_KEY')
      
 class DevConfig(Config):

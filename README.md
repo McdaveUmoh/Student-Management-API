@@ -21,6 +21,8 @@
 
  School Management API is a REST API which allows a School Admin to create accounts for both teachers and students account with functionalities for the teacher to create a course, register students for a course, grade the students and the student can login in to change their profile details and view their profile, see their CGPA as well. The app is hosted on heroku to enable you test out all functionalities using Swagger UI. you can visit the API here <a href="https://flask-school-api.herokuapp.com">School Management API</a>.
 
+ Note: This Website was developed with the concept of the Nigerian Army College of Environmental and Science College School Flow, Where the Admin is capable of CRUD Operations for only the Teachers and Students, Then the Teacher is responsible for the CRUD Operations for Courses and Grades. Courses can be created with the list of students appended and can be edited later. To Grade a Student he must be registered in the course.  
+
 ### Built With:
 
 [Python]__
@@ -36,7 +38,57 @@
 <!-- GETTING STARTED -->
 ## Usage
 
-To use this API, follow these steps:
+To use this API you can use the sample data or follow these steps:
+
+Admin:
+{
+  "id": 1,
+  "username": "dirict",
+  "name": "Tony Stark",
+  "email": "tony@gmail.com",
+  "password": "12345",
+  "user_type": "admin"
+}
+
+hod:
+{
+    "id": 2,
+    "name": "Ojo Fred",
+    "username": "hod1",
+    "email": "ojo@gmail.com",
+    "password": "12345",
+    "user_type": "teacher"
+}
+
+student:
+
+{
+    "id": 3,
+    "name": "Chris Evans",
+    "mat_no": "com/101",
+    "email": "chris@gmail.com",
+    "password": "12345"
+}
+
+Course:
+{
+    "id": 1,
+    "name": "com 101",
+    "course_unit": 4,
+    "teacher_name": "Dr. McDave Umoh",
+    "students": [
+      3
+    ],
+    "teacher_id": 2
+}
+
+
+CGPA:
+{
+  "student_name": "Chris Evans",
+  "student_mat_no": "com/101",
+  "gpa": 4
+}
 
 1. Open the heroku web app on your browser: https://flask-school-api.herokuapp.com/
 
