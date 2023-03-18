@@ -11,7 +11,7 @@
     <br />
     <a href="https://github.com/McdaveUmoh/Student-Management-API/issues">Report Bug</a>
     ·
-    <a href="https://github.com/McdaveUmoh/Student-Management-API/issues">Observations Feature</a>
+    <a href="https://github.com/McdaveUmoh/Student-Management-API/issues">Drop an Observation</a>
   </p>
 </div>
 
