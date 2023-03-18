@@ -53,6 +53,8 @@ coverage.xml
 .pytest_cache/
 cover/
 
+#git rm -r --cached env/ for next time 
+
 # Translations
 *.mo
 *.pot
