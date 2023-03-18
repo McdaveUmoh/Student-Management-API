@@ -1,10 +1,9 @@
 import os
+import re
 from decouple import config
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
-
-import re
 
 uri = config("DATABASE_URL") # or other relevant config var
 if uri.startswith("postgres://"):
