@@ -66,7 +66,7 @@ To use this API, follow these steps:
 <p align="right"><a href="#readme-top">back to top</a></p>
 
 
-## How to run the project
+## How to Run the Project
 
 Clone the project Repository
 ```
