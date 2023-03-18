@@ -50,11 +50,11 @@ class AdminRegistration(Resource):
     # This ensures that only an existing admin can register a new admin account on the app
     # @admin_required()
     @admin_namespace.doc(
-        description = "Register an Admin - Admins Only, after First Admin"
+        description = "Register Admin"
     )
     def post(self):
         """
-            Register an Admin - Admins Only, after First Admin
+            Register  Admin
         """        
         data = admin_namespace.payload
 
@@ -88,7 +88,7 @@ class GetUpdateDeleteAdmins(Resource):
     
     @admin_namespace.marshal_with(admin_model)
     @admin_namespace.doc(
-        description = "Retrieve an Admin's Details by ID - Admins Only",
+        description = "Retrieve an Admin's Details by ID as an Admin",
         params = {
             'admin_id': "The Admin's ID"
         }
@@ -96,7 +96,7 @@ class GetUpdateDeleteAdmins(Resource):
     @admin_required()
     def get(self, admin_id):
         """
-            Retrieve an Admin's Details by ID - Admins Only
+            Retrieve an Admin's Details by ID as an Admin
         """
         admin = Admin.get_by_id(admin_id)
         
@@ -104,7 +104,7 @@ class GetUpdateDeleteAdmins(Resource):
     
     @admin_namespace.expect(admin_signup_model)
     @admin_namespace.doc(
-        description = "Update an Admin's Details by ID - Admins Only",
+        description = "Update an Admin's Details by ID as an Admin",
         params = {
             'admin_id': "The Admin's ID"
         }
@@ -112,13 +112,13 @@ class GetUpdateDeleteAdmins(Resource):
     @admin_required()
     def put(self, admin_id):
         """
-            Update an Admin's Details by ID - Admins Only
+            Update an Admin's Details by ID as an Admin
         """
         admin = Admin.get_by_id(admin_id)
         active_admin = get_jwt_identity()
         
         if active_admin != admin.username:
-            return {"message": "Specific Admin Only"}, HTTPStatus.FORBIDDEN
+            return {"message": "For a Specific Admin Only"}, HTTPStatus.FORBIDDEN
 
         data = admin_namespace.payload
 
@@ -139,7 +139,7 @@ class GetUpdateDeleteAdmins(Resource):
         return admin_resp, HTTPStatus.OK
     
     @admin_namespace.doc(
-        description = "Delete an Admin by ID - Admins Only",
+        description = "Delete an Admin by ID as an Admin",
         params = {
             'admin_id': "The Admin's ID"
         }
@@ -147,10 +147,10 @@ class GetUpdateDeleteAdmins(Resource):
     @admin_required()
     def delete(self, admin_id):
         """
-            Delete an Admin by ID - Admins Only
+            Delete an Admin by ID as an Admin
         """
         admin = Admin.get_by_id(admin_id)
 
         admin.delete()
 
-        return {"message": "Admin Successfully Deleted"}, HTTPStatus.OK
+        return {"message": "Admin has been Successfully Deleted"}, HTTPStatus.OK
