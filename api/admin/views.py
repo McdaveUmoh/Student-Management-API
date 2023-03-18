@@ -31,12 +31,12 @@ class GetAllAdmins(Resource):
 
     @admin_namespace.marshal_with(admin_model)
     @admin_namespace.doc(
-        description="Retrieve All Admins - Admins Only"
+        description="Retrieve All Admins as an Admin"
     )
     @admin_required()
     def get(self):
         """
-            Retrieve All Admins - Admins Only
+            Retrieve All Admins as an Admin
         """
         admins = Admin.query.all()
 
@@ -88,10 +88,7 @@ class GetUpdateDeleteAdmins(Resource):
     
     @admin_namespace.marshal_with(admin_model)
     @admin_namespace.doc(
-        description = "Retrieve an Admin's Details by ID as an Admin",
-        params = {
-            'admin_id': "The Admin's ID"
-        }
+        description = "Retrieve an Admin's Details by ID as an Admin"
     )
     @admin_required()
     def get(self, admin_id):
@@ -104,10 +101,7 @@ class GetUpdateDeleteAdmins(Resource):
     
     @admin_namespace.expect(admin_signup_model)
     @admin_namespace.doc(
-        description = "Update an Admin's Details by ID as an Admin",
-        params = {
-            'admin_id': "The Admin's ID"
-        }
+        description = "Update an Admin's Details by ID as an Admin"
     )
     @admin_required()
     def put(self, admin_id):
@@ -139,10 +133,7 @@ class GetUpdateDeleteAdmins(Resource):
         return admin_resp, HTTPStatus.OK
     
     @admin_namespace.doc(
-        description = "Delete an Admin by ID as an Admin",
-        params = {
-            'admin_id': "The Admin's ID"
-        }
+        description = "Delete an Admin by ID as an Admin"
     )
     @admin_required()
     def delete(self, admin_id):

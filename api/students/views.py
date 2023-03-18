@@ -45,13 +45,7 @@ class SignUp(Resource):
     @student_namespace.expect(signup_model)
     @student_namespace.marshal_with(user_model)
     @student_namespace.doc(
-        description= "Create a Student as Admin",
-        params={
-            "name" : "Pass in the Student name Here",
-            "mat_no" : "Give the Student a mat_no",
-            "email" : "Add the Email of the Lecturer",
-            "password" : "Create a Password for the Teacher"
-        }
+        description= "Create a Student as Admin"
     )
     def post(self):
         """
@@ -73,11 +67,7 @@ class SignUp(Resource):
 class Login(Resource):
     @student_namespace.expect(login_model)
     @student_namespace.doc(
-        description= "Login a Student",
-        params={
-            "mat_no" : "Add the mat_no of the Student",
-            "password" : "Password for the Student"
-        }
+        description= "Login a Student"
     )
     def post(self):
         """
@@ -102,10 +92,7 @@ class Login(Resource):
 class Refresh(Resource):
     @jwt_required(refresh=True)
     @student_namespace.doc(
-        description= "Student Refresh Access Token",
-        params={
-            "access_token" : "Pass in the Access Token Here"
-        }
+        description= "Student Refresh Access Token"
     )
     def post(self):
         """
@@ -124,10 +111,7 @@ class GetUpdate(Resource):
     @student_namespace.marshal_with(user_model)
     @jwt_required()
     @student_namespace.doc(
-        description= "Get a Student by ID",
-        params={
-            "student_id" : "Student's ID",
-        }
+        description= "Get a Student by ID"
     )
     def get(self, student_id):
         """
@@ -143,13 +127,7 @@ class GetUpdate(Resource):
     
     @jwt_required()
     @student_namespace.doc(
-        description= "Student Data by ID",
-        params={
-            "student_id" : "Student's ID",
-            "name" : "Student's Name",
-            "email" : "Student's Email",
-            "password" : "Student's Password",
-        }
+        description= "Student Data by ID"
     )
     @student_namespace.expect(user_model)
     @student_namespace.marshal_with(user_model)

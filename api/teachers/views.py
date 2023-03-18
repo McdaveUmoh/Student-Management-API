@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from http import HTTPStatus
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, verify_jwt_in_request
 
-teacher_namespace = Namespace('teachers', description='name space for teacher authentication')
+teacher_namespace = Namespace('teachers', description='name space for authentication for admins and teacher')
 
 signup_model = teacher_namespace.model(
     'Signup', {
@@ -107,15 +107,11 @@ class SignUp(Resource):
 class Login(Resource):
     @teacher_namespace.expect(login_model)
     @teacher_namespace.doc(
-        description= "Login a Teacher",
-        params={
-            "username" : "Teacher's Username",
-            "password" : "Password of the Teacher"
-        }
+        description= "Login a Teacher/Admin"
     )
     def post(self):
         """
-            Login a User & Get Tokens
+            Login a Teacher/Admin & Get Tokens
         """
         data = request.get_json()
         username = data.get("username")
@@ -139,10 +135,7 @@ class Login(Resource):
 class Refresh(Resource):
     @jwt_required(refresh=True)
     @teacher_namespace.doc(
-        description= "Refresh a Teacher's Token",
-        params={
-            "access_token" : "Pass in the Teacher's Accesst Token"
-        }
+        description= "Refresh Teacher/Admin Token"
     )
     def post(self):
         """
@@ -163,10 +156,7 @@ class GetTeacher(Resource):
     @teacher_namespace.expect(user_model)
     @teacher_namespace.marshal_with(user_model)
     @teacher_namespace.doc(
-        description= "Get all Teachers",
-        params={
-            "teacher_id" : "Pass in the teacher_id Here"
-        }
+        description= "Get all Teachers"
     )
     @admin_required()
     def get(self):
@@ -184,10 +174,7 @@ class GetUpdateDeleteTeacher(Resource):
     @teacher_namespace.expect(user_model)
     @teacher_namespace.marshal_with(user_model)
     @teacher_namespace.doc(
-        description= "Get Teacher by ID",
-        params={
-            "teacher_id" : "Pass in the teacher_id Here"
-        }
+        description= "Get Teacher by ID"
     )
     @admin_required()
     def get(self, teacher_id):
@@ -202,13 +189,7 @@ class GetUpdateDeleteTeacher(Resource):
     
     @admin_required()
     @teacher_namespace.doc(
-        description= "Edit a Teacher by ID",
-        params={
-            "name" : "Pass in the Teachers name Here",
-            "username" : "Give the Teacher a Username",
-            "email" : "Add the Email of the Lecturer",
-            "password" : "Create a Password for the Teacher"
-        }
+        description= "Edit a Teacher by ID"
     )
     @teacher_namespace.expect(signup_model)
     @teacher_namespace.marshal_with(user_model)
@@ -230,10 +211,7 @@ class GetUpdateDeleteTeacher(Resource):
             return {"error " : " Teacher not Found"}, HTTPStatus.NOT_FOUND
     
     @teacher_namespace.doc(
-        description= "Delete a Teacher by ID",
-        params={
-            "teacher_id" : "Teacher's ID",
-        }
+        description= "Delete a Teacher by ID"
     )
     @admin_required()
     def delete(self, teacher_id):
@@ -272,13 +250,7 @@ class StudentGetCreate(Resource):
     @teacher_namespace.expect(newstudent_model)
     @teacher_namespace.marshal_with(student_model)
     @teacher_namespace.doc(
-        description= "Create a Student",
-        params={
-            "name" : "Student's Username",
-            "mat_no" : "Student's Matric Number",
-            "email" : "Student's Email",
-            "password" : "Password of the Student"
-        }
+        description= "Create a Student"
     )
     @admin_required()
     def post(self):
@@ -305,10 +277,7 @@ class GetUpdateDelete(Resource):
     @teacher_namespace.marshal_with(newstudent_model)
     @jwt_required()
     @teacher_namespace.doc(
-        description= "Get a Student by ID",
-        params={
-            "student_id" : "Student's ID",
-        }
+        description= "Get a Student by ID"
     )
     def get(self, student_id):
         """
@@ -325,10 +294,7 @@ class GetUpdateDelete(Resource):
     
     @admin_required()
     @teacher_namespace.doc(
-        description= "Edit a Student by ID",
-        params={
-            "student_id" : "Student's ID",
-        }
+        description= "Edit a Student by ID"
     )
     @teacher_namespace.expect(newstudent_model)
     @teacher_namespace.marshal_with(newstudent_model)
@@ -346,10 +312,7 @@ class GetUpdateDelete(Resource):
         return student, HTTPStatus.ACCEPTED
     
     @teacher_namespace.doc(
-        description= "Delete a Student by ID",
-        params={
-            "student_id" : "Student's ID",
-        }
+        description= "Delete a Student by ID"
     )
     @teacher_namespace.marshal_with(student_model)
     @admin_required()

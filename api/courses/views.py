@@ -53,13 +53,7 @@ class CourseGetCreate(Resource):
     @course_namespace.expect(course_model)
     @course_namespace.marshal_with(course_model)
     @course_namespace.doc(
-        description= "Create a course as a teacher",
-        params={
-            "name" : "Pass in the course name here",
-            "course_unit" : "Allocate the Course Credit Load",
-            "teacher_name" : "The name of the Lecturer",
-            "students" : "The List of Students to be registered in the course"
-        }
+        description= "Create a course as a teacher"
     )
     @jwt_required()
     def post(self):
@@ -113,10 +107,7 @@ class GetUpdateDelete(Resource):
     
     @course_namespace.marshal_with(course_model)
     @course_namespace.doc(
-        description= "Get a Specific Course by ID",
-        params={
-            "course_id" : "Pass in the Course ID to to get a Single Course"
-        }
+        description= "Get a Specific Course by ID"
     )
     @jwt_required()
     def get(self, course_id):
@@ -129,13 +120,7 @@ class GetUpdateDelete(Resource):
     @course_namespace.expect(course_model)
     @course_namespace.marshal_with(course_model)
     @course_namespace.doc(
-        description= "Edit a Course by ID",
-        params={
-            "name" : "Pass in the course name here",
-            "course_unit" : "Allocate the Course Credit Load",
-            "teacher_name" : "The name of the Lecturer",
-            "students" : "The List of Students to be registered in the course"
-        }
+        description= "Edit a Course by ID"
     )
     @jwt_required()
     def put(self, course_id):
@@ -178,10 +163,7 @@ class GetUpdateDelete(Resource):
         return course_to_update, HTTPStatus.OK
     
     @course_namespace.doc(
-        description= "Delete a Course by ID",
-        params={
-            "course_id" : "Pass in the Course ID to delete here"
-        }
+        description= "Delete a Course by ID"
     )
     @jwt_required()
     def delete(self, course_id):
@@ -219,10 +201,7 @@ class GetTeacherCourses(Resource):
     #use marshal_list_with when returning a bunch of list as opposed to marshal_with
     @course_namespace.marshal_list_with(course_model)
     @course_namespace.doc(
-        description= "Get all Courses of a Teacher by ID",
-        params={
-            "teacher_id" : "Pass in the Teacher ID to retrieve all the teachers course"
-        }
+        description= "Get all Courses of a Teacher by ID"
     )
     @jwt_required()
     def get(self, teacher_id):

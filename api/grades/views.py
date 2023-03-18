@@ -46,11 +46,7 @@ class GradeStudent(Resource):
     @grade_namespace.marshal_with(grade_model)
     @jwt_required()
     @grade_namespace.doc(
-        description= " Create a Grade for a Student as a Teacher",
-        params={
-            "course_id" : "Course ID",
-            "student_id" : "Student ID",
-        }
+        description= " Create a Grade for a Student as a Teacher"
     )
     def post(self, course_id, student_id):
         """
@@ -94,9 +90,7 @@ class GetDelete(Resource):
     @grade_namespace.marshal_with(grade_model)
     @jwt_required()
     @grade_namespace.doc(
-        description= " Get a Grade as a Teacher",
-        params={
-            "grade_id" : "Grade ID",
+        description= " Get a Grade as a Teacher"
         }
     )
     def get(self, grade_id):
@@ -114,10 +108,7 @@ class GetDelete(Resource):
     
     @jwt_required()
     @grade_namespace.doc(
-        description= " Delete a Grade as a Teacher",
-        params={
-            "grade_id" : "Grade ID",
-        }
+        description= " Delete a Grade as a Teacher"
     )
     def delete(self, grade_id):
         """
@@ -137,10 +128,7 @@ class StudentGPA(Resource):
     
     @jwt_required()
     @grade_namespace.doc(
-        description= " Get a Particular Student GPA",
-        params={
-            "student_id" : "Student's ID",
-        }
+        description= " Get a Particular Student GPA"
     )
     def get(self, student_id):
         """
@@ -181,11 +169,7 @@ class StudentGPA(Resource):
 @grade_namespace.route('/<int:course_id>/<int:student_id>')
 class GradeByCourseAndStudent(Resource):
     @grade_namespace.doc(
-        description= " Edit a Particular Student Grade in a Specific Course",
-        params={
-            "course_id" : "Course ID",
-            "student_id" : "Student's ID",
-        }
+        description= " Edit a Particular Student Grade in a Specific Course"
     )
     @jwt_required()
     @grade_namespace.expect(grade_model)
