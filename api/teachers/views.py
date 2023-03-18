@@ -230,7 +230,6 @@ class GetUpdateDeleteTeacher(Resource):
 #Student
 @teacher_namespace.route("/students")
 class StudentGetCreate(Resource):
-    @teacher_namespace.expect(student_model)
     @teacher_namespace.marshal_with(student_model)
     @teacher_namespace.doc(
         description= "Get all Students"
