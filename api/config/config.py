@@ -35,7 +35,7 @@ class TestConfig(Config):
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = uri
-    DEBUG=confid('DEBUG', cast=bool)
+    DEBUG=config('DEBUG', cast=bool)
  
 
 config_dict = {
