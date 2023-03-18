@@ -37,18 +37,13 @@ class CourseGetCreate(Resource):
     @course_namespace.doc(
         description= "Get all Courses"
     )
-    # @jwt_required()
+    @jwt_required()
     def get(self):
         """
             Get all Courses
         """
-        username = get_jwt_identity()
-        user = Teacher.query.filter_by(username=username).first()
-        if (user is None):
-           return {"Error":"You are not Authorised to perform this action"} , HTTPStatus.FORBIDDEN
-        else:
-            courses = Course.query.all()
-            return courses, HTTPStatus.OK
+        courses = Course.query.all()
+        return courses, HTTPStatus.OK
     
     @course_namespace.expect(course_model)
     @course_namespace.marshal_with(course_model)
@@ -191,8 +186,13 @@ class AllCourses(Resource):
         """
             Get all Courses with enrolled students
         """
-        course = Course.query.all()
-        return course, HTTPStatus.OK
+        username = get_jwt_identity()
+        user = Teacher.query.filter_by(username=username).first()
+        if (user is None):
+           return {"Error":"You are not Authorised to perform this action"} , HTTPStatus.FORBIDDEN
+        else:
+            course = Course.query.all()
+            return course, HTTPStatus.OK
         
 
 @course_namespace.route('/teacher/<int:teacher_id>/courses')
@@ -206,7 +206,7 @@ class GetTeacherCourses(Resource):
     @jwt_required()
     def get(self, teacher_id):
         """
-            Get all teacher Courses
+            Get all teacher Courses of a Teacher by ID
         """
         teacher = Teacher.get_by_id(teacher_id)
         courses = teacher.courses
