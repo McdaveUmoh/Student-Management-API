@@ -171,7 +171,6 @@ class GetTeacher(Resource):
 @teacher_namespace.route("/teacher/<int:teacher_id>")
 class GetUpdateDeleteTeacher(Resource):
     
-    @teacher_namespace.expect(user_model)
     @teacher_namespace.marshal_with(user_model)
     @teacher_namespace.doc(
         description= "Get Teacher by ID"
@@ -272,7 +271,6 @@ class StudentGetCreate(Resource):
 @teacher_namespace.route("/student/<int:student_id>")
 class GetUpdateDelete(Resource):
     
-    @teacher_namespace.expect(newstudent_model)
     @teacher_namespace.marshal_with(newstudent_model)
     @jwt_required()
     @teacher_namespace.doc(
