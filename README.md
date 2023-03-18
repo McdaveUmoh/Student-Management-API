@@ -49,7 +49,9 @@ Admin:
   "password": "12345",
   "user_type": "admin"
 }
+
 ---
+
 Teacher:
 {
     "id": 2,
@@ -59,7 +61,9 @@ Teacher:
     "password": "12345",
     "user_type": "teacher"
 }
+
 ---
+
 Student:
 {
     "id": 3,
@@ -68,7 +72,9 @@ Student:
     "email": "chris@gmail.com",
     "password": "12345"
 }
+
 ---
+
 Course:
 {
     "id": 1,
@@ -80,13 +86,16 @@ Course:
     ],
     "teacher_id": 2
 }
+
 ---
+
 CGPA:
 {
   "student_name": "Chris Evans",
   "student_mat_no": "com/101",
   "gpa": 4
 }
+
 ---
 
 1. Open the heroku web app on your browser: https://flask-school-api.herokuapp.com/
