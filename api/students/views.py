@@ -106,8 +106,6 @@ class Refresh(Resource):
 
 @student_namespace.route("/student/<int:student_id>")
 class GetUpdate(Resource):
-    
-    @student_namespace.expect(user_model)
     @student_namespace.marshal_with(user_model)
     @jwt_required()
     @student_namespace.doc(
