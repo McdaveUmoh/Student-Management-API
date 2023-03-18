@@ -154,7 +154,6 @@ class Refresh(Resource):
 @teacher_namespace.route("/teacher")
 class GetTeacher(Resource):
     
-    @teacher_namespace.expect(user_model)
     @teacher_namespace.marshal_with(user_model)
     @teacher_namespace.doc(
         description= "Get all Teachers"
@@ -180,7 +179,7 @@ class GetUpdateDeleteTeacher(Resource):
     @admin_required()
     def get(self, teacher_id):
         """
-            Get all Teachers 
+            Get Teachers by ID
         """
         teacher = Teacher.query.filter(Teacher.id==teacher_id, Teacher.user_type == "teacher").first()
         if teacher:
