@@ -2,7 +2,7 @@
 
 <!-- Project Name -->
 <div align="center">
-  <h1>Ze School</h1>
+  <h1>School Management API</h1>
 </div>
 
 <div>
