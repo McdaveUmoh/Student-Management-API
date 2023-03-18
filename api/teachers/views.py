@@ -3,11 +3,12 @@ from flask_restx import Namespace, Resource, fields
 from ..utils.decorators import admin_required, get_user_type
 from ..models.teachers import Teacher
 from ..models.students import Student
+from ..utils.blacklist import BLACKLIST
 from ..utils import db
 from ..models.courses import Course
 from werkzeug.security import generate_password_hash, check_password_hash
 from http import HTTPStatus
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, verify_jwt_in_request
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, verify_jwt_in_request, get_jwt
 
 teacher_namespace = Namespace('teachers', description='name space for authentication for admins and teacher')
 
@@ -323,4 +324,19 @@ class GetUpdateDelete(Resource):
         student_to_delete = Student.get_by_id(student_id)
         student_to_delete.delete()
         return {"message": "Deleted Successfully"}, HTTPStatus.OK
+    
+    
+@teacher_namespace.route('/logout')
+class Logout(Resource):
+    @jwt_required(verify_type=False)
+    def post(self):
+        """
+            Revoke Access/Refresh Token
+        """
+        token = get_jwt()
+        jti = token["jti"]
+        token_type = token["type"]
+        BLACKLIST.add(jti)
+        return {"message": f"{token_type.capitalize()} token successfully revoked"}, HTTPStatus.OK
+
     

@@ -91,7 +91,6 @@ class GetDelete(Resource):
     @jwt_required()
     @grade_namespace.doc(
         description= " Get a Grade as a Teacher"
-        }
     )
     def get(self, grade_id):
         """
