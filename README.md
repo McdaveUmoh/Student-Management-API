@@ -23,9 +23,9 @@
 
 ### Built With:
 
-![Python][python]
-![Flask][flask]
-![SQLite][sqlite]
+[Python]__
+[Flask]__
+[SQLite]
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
